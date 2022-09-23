@@ -1,0 +1,65 @@
+js
+const corpoTabela = document.getElementById("corpo-tabela")
+ function receberDados (){
+
+    const url = "http://10.0.3.132:1313/listar-alunos";
+
+    fetch (url, {
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        method: "GET",
+    })
+    . then (resultado => {
+        return resultado.json()
+    })
+    .then ((dados)=> {
+        console.log (dados)
+        for(var num = 0; num < dados.length; num++){
+            const criarLinha = document.createElement ("tr");
+
+            criarLinha.innerHTML = `
+            <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          `;
+          corpoTabela.appendChild(criarLinha);
+
+        }
+    });
+}
+
+-----------------------------------------------------------------------
+html
+<!DOCTYPE html>
+<html lang="en">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Primeiro</th>
+            <th scope="col">Último</th>
+            <th scope="col">Nickname</th>
+          </tr>
+        </thead>
+        <tbody id = "corpo-tabela">
+        </tbody>
+      </table>
+      <input type="button" value = "pegar dados" onclick="receberDados()">
+      <script src="script.js"></script>
+</body>
+</html>
