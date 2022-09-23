@@ -16,6 +16,7 @@ const corpoTabela = document.getElementById("corpo-tabela")
     })
     .then ((dados)=> {
         console.log (dados)
+        corpoTabela.innerHTML = ''
         for(var num = 0; num < dados.length; num++){
             const criarLinha = document.createElement ("tr");
 
